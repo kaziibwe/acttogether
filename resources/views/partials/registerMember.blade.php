@@ -25,7 +25,7 @@
     @enderror
 
     <b>Image</b>:
-    <input type="file" name="image" value="{{ old('image') }}"   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" >
+    <input type="file" name="image" value="{{ old('image') }}" type="file"   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" >
     @error('image')
     <code>{{ $message }}</code>
    @enderror
@@ -64,7 +64,7 @@
         @error('savers_address')
         <code>{{ $message }}</code>
     @enderror
-    <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone number
+    <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone number 1
         1:</label>
     <input name="savers_pnumber_1" value="{{ old('savers_pnumber_1') }}"   aria-describedby="helper-text-explanation"
         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -73,7 +73,7 @@
         <code>{{ $message }}</code>
     @enderror
 
-    <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone number
+    <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone number 2
         2:</label>
     <input  name="savers_pnumber_2" value="{{ old('savers_pnumber_2') }}" aria-describedby="helper-text-explanation"
         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -91,12 +91,26 @@
     @enderror
 
     <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Gender:</label>
-    <input name="savers_gender" value="{{ old('savers_gender') }}"   aria-describedby="helper-text-explanation"
+    {{-- <input name="savers_gender" value="{{ old('savers_gender') }}"   aria-describedby="helper-text-explanation"
         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         placeholder="Male">
         @error('savers_gender')
         <code>{{ $message }}</code>
+    @enderror --}}
+
+    <select name="savers_gender" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" aria-label="Default select example">
+        <option value="">Select Gender</option>
+                <option value="male" >male</option>
+                <option value="female" >female</option>
+    </select>
+
+    @error('savers_gender')
+    <code>{{ $message }}</code>
     @enderror
+    @error('secretary_id')
+        <code>{{ $message }}</code>
+    @enderror
+
     <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Marital
         Status:</label>
     <input name="savers_marital_status" value="{{ old('savers_marital_status') }}"   aria-describedby="helper-text-explanation"

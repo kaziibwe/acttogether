@@ -13,4 +13,9 @@ class Member extends Model
         return $this->belongsTo(Group::class, 'group_id');
 
     }
+
+    public function transactions(){
+        return $this->hasMany(Transaction::class);
+        // return $this->hasMany(Member::class);
+    }
 }

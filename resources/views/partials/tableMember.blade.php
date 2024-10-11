@@ -6,7 +6,7 @@
         Export Excel Member
     </button> </a>
 
-    <a class="padding-left" href="{{ route('member.export') }}"><button type="button" onclick="show_group_member_creation_form()"
+   <button type="button" onclick="show_group_member_creation_form()"
         class="text-white bg-green-400 hover:bg-green-500 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
         Register new Saver
         <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
@@ -14,7 +14,7 @@
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                 stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
         </svg>
-    </button> </a>
+    </button>
 
     <a class="padding-left" ><button type="button"
         class="text-white bg-red-400 hover:bg-red-500 focus:ring-4 red:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
@@ -40,10 +40,10 @@
             </th>
 
               <th scope="col" class="px-6 py-3">
-                Total savings
+                 Occupation
             </th>
             <th scope="col" class="px-6 py-3">
-                Total savings
+                Gender
             </th>
             <th scope="col" class="px-6 py-3">
             Last Transaction
@@ -71,6 +71,7 @@
         <th scope="row"
             class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
             <img class="w-10 h-10 rounded-full" src="{{ $member->image ? asset('storage/' . $member->image) : asset('/avatar.jpeg') }}" >
+
             <div class="ps-3">
                 <div class="text-base  font-semibold">{{ $member->savers_surname}}</div>
                 {{-- <div class="font-normal text-gray-500">phrunsys@scpel.org</div> --}}
@@ -99,14 +100,15 @@
 
         <td class="px-6 py-4">
             <!-- Modal toggle -->
-            <a href="#" type="button" data-modal-target="editUserModal"
-                data-modal-show="editUserModal"
-                class="font-medium  text-red-400 dark:text-red-400 hover:underline">Edit
+
+            <a href="{{ route('member.profile',$member->id) }}" type="button"
+                class="font-medium  text-yellow-400 dark:text-red-400 hover:underline">
+                <img src="{{ asset('view.png') }}" width="30px" alt="">
             </a>
             <br>
-            <a href="#" type="button" data-modal-target="editUserModal"
-                data-modal-show="editUserModal"
-                class="font-medium  text-yellow-400 dark:text-red-400 hover:underline">View
+            <a href="{{ route('editMemberPage',$member->id) }}" type="button"
+                class="font-medium  text-yellow-400 dark:text-red-400 hover:underline">
+                <img src="{{ asset('edit.png') }}" width="30px" alt="">
             </a>
         </td>
     </tr>

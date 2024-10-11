@@ -1,9 +1,13 @@
 <?php
 
+use App\Models\User;
+use App\Models\Member;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\GroupController;
+use App\Models\Group;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,10 +22,18 @@ use App\Http\Controllers\GroupController;
 
 
 // route to login page
-Route::get('/register', function () {
+Route::get('/registerTheAdmin', function () {
     return view('register');
-});
+})->name('adminRegister');
 
+Route::get('otpPage/{email}',[UserController::class,'otpPage'])->name('otpPage');
+Route::post('otp/{email}',[UserController::class,'otp'])->name('otpverifying');
+
+
+Route::get('/viewuserprofile/{id}', function ($id) {
+   $member=Member::find($id);
+    return view('viewProfile',[ 'member'=>$member]);
+})->name('member.profile')->middleware('auth');
 // route to retistor  page
 
 
@@ -45,11 +57,73 @@ route::post('/logout', [UserController::class, 'logout'])->name('logoutUser')->m
 // route to authenticate admin
 // Route::post('loginAdmin',[AdminController::class,'authAdmin'])->name('Admin.authenticateAdmin');
 
+// see all member under the group
+Route::get('group/{id}/member',[GroupController::class,'allMember'])->name('allMember')->middleware('auth');
+// see all transaction of the member
+Route::get('member/{id}/transaction',[GroupController::class,'alltransactions'])->name('transaction')->middleware('auth');
+
+//route to group details
+Route::get('groupDetail/{id}', function($id){
+    $group=Group::find($id);
+    return view('groupDetail',[
+        'group'=>$group
+    ]);
+})->name('groupDetail')->middleware('auth');
+
+
 //  route to go to edit  group page
 Route::get('group/{id}',[GroupController::class, 'showEditPage'])->name('admin.editGroup')->middleware('auth');
 
 // route  to edit
 Route::put('/edit/{id}',[GroupController::class,'editGroup'])->name('admin.editGrouping')->middleware('auth');
+
+
+
+// show  user profile
+Route::get('adminProfilePage',function(){
+    $admin = Auth::user(); // Assuming you're using Laravel's built-in authentication
+        //  $admin = User::find(Auth::id());
+    // dd($admin);
+    return view( 'adminProfilePage',['admin'=>$admin]);
+})->name('adminProfilePage');
+
+// route to  edit user page
+Route::get('adminEditProfile/{id}',function($id){
+    $user= User::find($id);
+    // dd($user->id);
+        $admin = Auth::user(); // Assuming you're using Laravel's built-in authentication
+    if($admin->id !== $user->id){
+    return redirect('/login');
+    }
+    return view('adminEditProfile',[
+      'user' => $user,
+    ]);
+ })->name('adminEditProfile');;
+
+
+ // route change password
+Route::get('changePassword/{id}', function ($id) {
+    $user= User::find($id);
+    // dd($user->id);
+        $admin = Auth::user(); // Assuming you're using Laravel's built-in authentication
+    if($admin->id !== $user->id){
+    return redirect('/login');
+    }
+
+    return view('changePassword',[
+        'user'=>$user
+    ]);
+})->name('changePassword');
+
+
+// Route::put('/edit/{id}',[GroupController::class,'editGroup'])->name('admin.editGrouping')->middleware('auth');
+// change the password
+Route::put('/editpassword/{id}',[GroupController::class,'editpassword'])->name('editpassword')->middleware('auth');
+
+
+
+//  route for editing profile
+ Route::put('/editingAdminProfile/{id}',[UserController::class,'editingAdminProfile'])->name('editingAdminProfile')->middleware('auth');
 
 
 // get request  for groups
@@ -64,10 +138,23 @@ Route::post('/createMember',[GroupController::class, 'storeMember'])->name('admi
 
 Route::get('/',[GroupController::class,'showMember'])->middleware('auth');
 
+
 // route to export excel
 // Route::get('export', [GroupController::class, 'export'])->name('member.export');
 
 Route::get('member/export/', [GroupController::class, 'exportMember'])->name('member.export')->middleware('auth');
+
+// Route::get('transaction/export/', [GroupController::class, 'exporttransaction'])->name('transaction.export')->middleware('auth');
+Route::get('transaction/export/{id}', [GroupController::class, 'exporttransaction'])->name('transaction.export')->middleware('auth');
+
+Route::get('GroupMembers/export/{id}', [GroupController::class, 'exportGroupMembers'])->name('GroupMembers.export')->middleware('auth');
+
+Route::get('editMemberPage/{id}',[GroupController::class, 'editMemberPage'])->name('editMemberPage')->middleware('auth');
+
+// route to edit user
+Route::put('/memberediting/{id}',[GroupController::class,'memberediting'])->name('memberediting')->middleware('auth');
+
+
 
 // route to export excel for group
 Route::get('group', [GroupController::class, 'exportGroup'])->name('group')->middleware('auth');
@@ -76,4 +163,4 @@ Route::get('group', [GroupController::class, 'exportGroup'])->name('group')->mid
 //     Route::group(['middleware' => ['admin']], function () {
 //         // Your protected admin API routes here
 //     });
-// });
+// });  php artisan storage:link

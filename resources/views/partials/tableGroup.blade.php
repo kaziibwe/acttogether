@@ -5,7 +5,7 @@
         Export Excel Group
     </button> </a>
 
-    <a class="padding-left" href="{{ route('member.export') }}"><button type="button" onclick="show_group_creation_form()"
+ <button type="button" onclick="show_group_creation_form()"
         class="text-white bg-green-400 hover:bg-green-500 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
         Register new Group
         <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
@@ -13,7 +13,7 @@
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                 stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
         </svg>
-    </button> </a>
+    </button>
 
     <a class="padding-left" ><refbutton type="button"
         class="text-white bg-red-400 hover:bg-red-500 focus:ring-4 red:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
@@ -44,6 +44,11 @@ class="w-[100%] text-sm text-left border-b rtl:text-right text-gray-500 dark:tex
 
             </div>
         </th>
+        {{-- <th scope="col" class="px-6 py-3">
+            <div class="flex items-center">
+                Group Bank Acc
+            </div>
+        </th> --}}
         <th scope="col" class="px-6 py-3">
             <div class="flex items-center">
                 Group chairman
@@ -69,7 +74,10 @@ class="w-[100%] text-sm text-left border-b rtl:text-right text-gray-500 dark:tex
             </div>
         </th>
         <th scope="col" class="px-6 py-3">
-            <span class="sr-only">Edit</span>
+            <div class="flex items-center">
+                manage
+
+            </div>
         </th>
     </tr>
 </thead>
@@ -96,6 +104,9 @@ class="w-[100%] text-sm text-left border-b rtl:text-right text-gray-500 dark:tex
         <td class="px-6 py-4">
             {{ $group->group_location }}
         </td>
+        {{-- <td class="px-6 py-4">
+            {{ $group->group_bank_account }}
+        </td> --}}
         <td class="px-6 py-4">
             {{-- {{ $group->chairmain }} --}}
              {{-- {{ $group->secretery }} --}}
@@ -118,20 +129,7 @@ class="w-[100%] text-sm text-left border-b rtl:text-right text-gray-500 dark:tex
 
         </td>
         <td class="px-6 py-4">
-            @if ($group->treasurer_id)
-            @php
-                $treasurer = \App\Models\Member::find($group->treasurer_id); // Assuming Member is your model
-            @endphp
-
-            @if ($treasurer)
-                <p>{{ $treasurer->savers_surname }} {{ $treasurer->savers_given_name }}</p>
-            @endif
-        @else
-        <code>
-            <a href="{{ route('admin.editGroup', ['id' => $group->id]) }}" class="color-blue">Assign treasurer</a>
-        </code>
-
-        @endif
+           `
 
 
         </td>
@@ -159,7 +157,12 @@ class="w-[100%] text-sm text-left border-b rtl:text-right text-gray-500 dark:tex
         </td>
         <td class="px-6 py-4 text-right">
             <a href="{{ route('admin.editGroup', ['id' => $group->id]) }}"
-                class="font-medium text-red-400 dark:text-red-400 hover:underline">Edit</a>
+                class="font-medium text-red-400 dark:text-red-400 hover:underline"><img src="{{ asset('edit.png') }}" width="20px" alt=""></a>
+                            <a href="{{ route('allMember', ['id' => $group->id]) }}"
+                class="font-medium text-yellow-400 dark:text-red-400 hover:underline"><img src="{{ asset('members.png') }}" width="20px" alt=""></a>
+
+                <a href="{{ route('groupDetail', ['id' => $group->id]) }}"
+                    class="font-medium text-yellow-400 dark:text-red-400 hover:underline"><img src="{{ asset('view.png') }}" width="20px" alt=""></a>
         </td>
     </tr>
 

@@ -1,0 +1,290 @@
+<x-layout_admin>
+        <!-- Main Container -->
+        <div class="p-4 sm:ml-64" id="actogether_component_container">
+            <!-- Groups Ui -->
+            <div id="group_ui_component"
+                class="p-4 border-2 border-red-200 border-dashed rounded-lg dark:border-gray-700 mt-14 h-[100vh]">
+                <div class="grid grid-cols-3 gap-4 mb-4">
+                    <div class="flex items-center justify-center h-24 rounded bg-red-50 dark:bg-gray-800">
+                        <div class="flex flex-col items-center justify-center">
+                            <dt class="mb-2 text-3xl font-extrabold">{{ $groupCount }}</dt>
+                            <dd class="text-gray-500 dark:text-gray-400">Savings groups</dd>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-center h-24 rounded bg-red-50 dark:bg-gray-800">
+                        <div class="flex flex-col items-center justify-center">
+                            <dt class="mb-2 text-3xl font-extrabold">{{ $membertotal }}</dt>
+                            <dd class="text-gray-500 dark:text-gray-400">Total groups savings</dd>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-center h-24 rounded bg-red-50 dark:bg-gray-800">
+                        <div class="flex flex-col items-center justify-center">
+                            <dt class="mb-2 text-3xl font-extrabold">730</dt>
+                            <dd class="text-gray-500 dark:text-gray-400">Active groups</dd>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex items-center justify-center w-full mb-4 rounded">
+
+                    <div class="w-[100%] relative sm:rounded-lg">
+
+                        {{-- table for groups --}}
+                         @include('partials.tableGroup')
+                    </div>
+
+                </div>
+                {{-- <div class="grid grid-cols-2 gap-4 mb-4">
+                    <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
+                        <button type="button" onclick="show_group_creation_form()"
+                            class="text-white bg-red-400 hover:bg-red-500 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                            Create new group
+                            <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
+                            </svg>
+                        </button>
+                    </div>
+
+
+                    <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
+                        <button type="button"
+                            class="text-white bg-red-400 hover:bg-red-500 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                            Delete group
+                            <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
+                            </svg>
+                        </button>
+                    </div>
+                </div> --}}
+            </div>
+
+            <!-- Individual UI -->
+            <div id="individual_ui_component"
+                class="p-4 border-2 hidden border-red-200 border-dashed rounded-lg dark:border-gray-700 mt-14 h-[100vh]">
+                <div class="grid grid-cols-3 gap-4 mb-4">
+                    <div class="flex items-center justify-center h-24 rounded bg-red-50 dark:bg-gray-800">
+                        <div class="flex flex-col items-center justify-center">
+                            <dt class="mb-2 text-3xl font-extrabold">73099</dt>
+                            <dd class="text-gray-500 dark:text-gray-400">Individual Savers</dd>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-center h-24 rounded bg-red-50 dark:bg-gray-800">
+                        <div class="flex flex-col items-center justify-center">
+                            <dt class="mb-2 text-3xl font-extrabold">73Million UGX</dt>
+                            <dd class="text-gray-500 dark:text-gray-400">Total savings</dd>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-center h-24 rounded bg-red-50 dark:bg-gray-800">
+                        <div class="flex flex-col items-center justify-center">
+                            <dt class="mb-2 text-3xl font-extrabold">728700</dt>
+                            <dd class="text-gray-500 dark:text-gray-400">Active savers</dd>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex items-center justify-center mb-4 rounded w-[100%] dark:bg-gray-800">
+
+                    <div class="relative w-[100%] sm:rounded-lg">
+                        <div
+                            class="flex items-center w-[100%] justify-between flex-column md:flex-row flex-wrap space-y-4 md:space-y-0 py-4 bg-white dark:bg-gray-900">
+                            <div>
+                                <button id="dropdownActionButton" data-dropdown-toggle="dropdownAction"
+                                    class="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+                                    type="button">
+                                    <span class="sr-only">Action button</span>
+                                    Manage
+                                    <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2" d="m1 1 4 4 4-4" />
+                                    </svg>
+                                </button>
+                                <!-- Dropdown menu -->
+                                <div id="dropdownAction"
+                                    class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+                                    <ul class="py-1 text-sm text-gray-700 dark:text-gray-200"
+                                        aria-labelledby="dropdownActionButton">
+                                        <li>
+                                            <a href="#"
+                                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Reward</a>
+                                        </li>
+                                        <li>
+                                            <a href="#"
+                                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Promote</a>
+                                        </li>
+                                        <li>
+                                            <a href="#"
+                                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Activate
+                                                account</a>
+                                        </li>
+                                    </ul>
+                                    <div class="py-1">
+                                        <a href="#"
+                                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Delete
+                                            User</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <label for="table-search" class="sr-only">Search</label>
+                            <div class="relative">
+                                <div
+                                    class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
+                                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                                    </svg>
+                                </div>
+                                <input type="text" id="table-search-users"
+                                    class="block pt-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    placeholder="Search for users">
+                            </div>
+                        </div>
+
+                        {{-- table members --}}
+
+                        @include('partials.tableMember')
+
+
+                        <!-- Edit user modal -->
+                        <div id="editUserModal" tabindex="-1" aria-hidden="true"
+                            class="fixed top-0 left-0 right-0 z-50 items-center justify-center hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                            <div class="relative w-full max-w-2xl max-h-full">
+                                <!-- Modal content -->
+                                <form class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                                    <!-- Modal header -->
+                                    <div
+                                        class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
+                                        <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                                            Edit user
+                                        </h3>
+                                        <button type="button"
+                                            class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                                            data-modal-hide="editUserModal">
+                                            <svg class="w-3 h-3" aria-hidden="true"
+                                                xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                viewBox="0 0 14 14">
+                                                <path stroke="currentColor" stroke-linecap="round"
+                                                    stroke-linejoin="round" stroke-width="2"
+                                                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                            </svg>
+                                            <span class="sr-only">Close modal</span>
+                                        </button>
+                                    </div>
+                                    <!-- Modal body -->
+                                    <div class="p-6 space-y-6">
+                                        <div class="grid grid-cols-6 gap-6">
+                                            <div class="col-span-6 sm:col-span-3">
+                                                <label for="first-name"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">First
+                                                    Name</label>
+                                                <input type="text" name="first-name" id="first-name"
+                                                    class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                    placeholder="Bonnie" required="">
+                                            </div>
+                                            <div class="col-span-6 sm:col-span-3">
+                                                <label for="last-name"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Last
+                                                    Name</label>
+                                                <input type="text" name="last-name" id="last-name"
+                                                    class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                    placeholder="Green" required="">
+                                            </div>
+                                            <div class="col-span-6 sm:col-span-3">
+                                                <label for="email"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+                                                <input type="email" name="email" id="email"
+                                                    class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                    placeholder="example@company.com" required="">
+                                            </div>
+                                            <div class="col-span-6 sm:col-span-3">
+                                                <label for="phone-number"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone
+                                                    Number</label>
+                                                <input type="number" name="phone-number" id="phone-number"
+                                                    class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                    placeholder="e.g. +(12)3456 789" required="">
+                                            </div>
+                                            <div class="col-span-6 sm:col-span-3">
+                                                <label for="department"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Department</label>
+                                                <input type="text" name="department" id="department"
+                                                    class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                    placeholder="Development" required="">
+                                            </div>
+                                            <div class="col-span-6 sm:col-span-3">
+                                                <label for="company"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Company</label>
+                                                <input type="number" name="company" id="company"
+                                                    class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                    placeholder="123456" required="">
+                                            </div>
+                                            <div class="col-span-6 sm:col-span-3">
+                                                <label for="current-password"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Current
+                                                    Password</label>
+                                                <input type="password" name="current-password" id="current-password"
+                                                    class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                    placeholder="••••••••" required="">
+                                            </div>
+                                            <div class="col-span-6 sm:col-span-3">
+                                                <label for="new-password"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">New
+                                                    Password</label>
+                                                <input type="password" name="new-password" id="new-password"
+                                                    class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                    placeholder="••••••••" required="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Modal footer -->
+                                    <div
+                                        class="flex items-center p-6 space-x-3 rtl:space-x-reverse border-t border-gray-200 rounded-b dark:border-gray-600">
+                                        <button type="submit"
+                                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Save
+                                            all</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="grid grid-cols-2 gap-4 mb-4">
+                    {{-- <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
+                        <button onclick="show_group_member_creation_form()" type="button"
+                            class="text-white bg-red-400 hover:bg-red-500 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                            Register new saver
+                            <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
+                        <button type="button"
+                            class="text-white bg-red-400 hover:bg-red-500 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                            Remove saver
+                            <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
+                            </svg>
+                        </button>
+                    </div> --}}
+                </div>
+            </div>
+
+            <!-- Member registration form -->
+            {{-- register member --}}
+            @include('partials.registerMember')
+            {{--  Group member creation  --}}
+            <!-- Group creation form -->
+            @include('partials.registerGroup')
+
+        </div>
+
+</x-layout_admin>

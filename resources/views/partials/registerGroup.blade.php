@@ -15,6 +15,17 @@
        @error('group_phone')
        <code>{{ $message }}</code>
    @enderror
+
+   <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+    Bank Account:</label>
+ <input  name="group_bank_account" value="{{ old('group_bank_account') }}"   aria-describedby="helper-text-explanation"
+    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+    placeholder="Location">
+    @error('group_bank_account')
+    <code>{{ $message }}</code>
+@enderror
+
+
     <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Group
        Location:</label>
     <input  name="group_location" value="{{ old('group_location') }}"   aria-describedby="helper-text-explanation"
