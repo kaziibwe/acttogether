@@ -19,6 +19,7 @@ public function loginPage(){
 
 }
 
+
     public function store(Request $request)
     {
         //
